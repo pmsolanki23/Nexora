@@ -65,28 +65,6 @@ const Login = ({ settoken }) => {
             Sign in to manage products, orders, and dashboard performance.
           </p>
 
-          <form onSubmit={onsubmithandler} className="mt-8 space-y-5">
-            <Field
-              icon={Mail}
-              type="email"
-              placeholder="admin@shoppiko.com"
-              value={email}
-              onChange={(e) => setemail(e.target.value)}
-            />
-            <Field
-              icon={Lock}
-              type="password"
-              placeholder="admin123"
-              value={password}
-              onChange={(e) => setpassword(e.target.value)}
-            />
-            <button
-              type="submit"
-              className="w-full rounded-full bg-[#aaff5a] py-3.5 font-black text-[#070a0f] transition hover:bg-white"
-            >
-              Login
-            </button>
-          </form>
         </div>
       </div>
       <ToastContainer />
