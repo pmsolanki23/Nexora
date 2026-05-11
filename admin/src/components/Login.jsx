@@ -50,11 +50,11 @@ const Login = ({ settoken }) => {
                 Control the store with clarity.
               </h1>
             </div>
-            <div className="rounded-[28px] border border-white/10 bg-white/[0.06] p-6 backdrop-blur">
+            {/* <div className="rounded-[28px] border border-white/10 bg-white/[0.06] p-6 backdrop-blur">
               <p className="text-sm text-slate-400">Default local login</p>
               <p className="mt-2 font-black text-white">admin@shoppiko.com</p>
               <p className="mt-1 font-black text-[#aaff5a]">admin123</p>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -65,6 +65,28 @@ const Login = ({ settoken }) => {
             Sign in to manage products, orders, and dashboard performance.
           </p>
 
+          {/* <form onSubmit={onsubmithandler} className="mt-8 space-y-5">
+            <Field
+              icon={Mail}
+              type="email"
+              placeholder="admin@shoppiko.com"
+              value={email}
+              onChange={(e) => setemail(e.target.value)}
+            />
+            <Field
+              icon={Lock}
+              type="password"
+              placeholder="admin123"
+              value={password}
+              onChange={(e) => setpassword(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="w-full rounded-full bg-[#aaff5a] py-3.5 font-black text-[#070a0f] transition hover:bg-white"
+            >
+              Login
+            </button>
+          </form> */}
         </div>
       </div>
       <ToastContainer />
