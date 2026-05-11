@@ -65,7 +65,7 @@ const Login = ({ settoken }) => {
             Sign in to manage products, orders, and dashboard performance.
           </p>
 
-          {/* <form onSubmit={onsubmithandler} className="mt-8 space-y-5">
+          <form onSubmit={onsubmithandler} className="mt-8 space-y-5">
             <Field
               icon={Mail}
               type="email"
@@ -86,7 +86,7 @@ const Login = ({ settoken }) => {
             >
               Login
             </button>
-          </form> */}
+          </form>
         </div>
       </div>
       <ToastContainer />
