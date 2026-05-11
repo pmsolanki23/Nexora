@@ -1,13 +1,12 @@
-
 {
   "rewrites": [
     {
-      "source": "/admin/:path*",
-      "destination": "https://nexora-7qt1.vercel.app/:path*"
+      "source": "/admin",
+      "destination": "https://nexora-7qt1.vercel.app"
     },
     {
-      "source": "/admin",
-      "destination": "https://nexora-7qt1.vercel.app/"
+      "source": "/admin/:path*",
+      "destination": "https://nexora-7qt1.vercel.app/:path*"
     },
     {
       "source": "/(.*)",
