@@ -1,0 +1,21 @@
+{
+  "projects": {
+    "frontend": {
+      "source": "/(?!admin|api)(.*)",
+      "destination": "/frontend/$1"
+    },
+    "admin": {
+      "source": "/admin/(.*)",
+      "destination": "/admin/$1"
+    },
+    "api": {
+      "source": "/api/(.*)",
+      "destination": "/backend/api/$1"
+    }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/backend/api/$1" },
+    { "source": "/admin/(.*)", "destination": "/admin/index.html" },
+    { "source": "/(.*)", "destination": "/frontend/index.html" }
+  ]
+}

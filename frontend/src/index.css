@@ -1,0 +1,95 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+a.active hr   {
+    display: block;
+}
+
+.prata-regular {
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  *{
+    font-family: Manrope, system-ui, sans-serif;
+  }
+
+  body {
+    background: #080b10;
+  }
+
+  .shop-card {
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(8,11,16,0.08);
+    box-shadow: 0 24px 70px rgba(8, 11, 16, 0.12);
+  }
+
+  .premium-panel {
+    background: linear-gradient(180deg, rgba(16, 21, 31, 0.94), rgba(10, 14, 21, 0.96));
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 28px 90px rgba(0,0,0,0.28);
+  }
+
+  .premium-card {
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(226,232,240,0.76);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+  }
+
+  .premium-kicker {
+    color: #aaff5a;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .profile-input {
+    width: 100%;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #10151f;
+    padding: 1rem 1.25rem;
+    color: #fff;
+    outline: none;
+  }
+
+  .profile-input:focus {
+    border-color: #aaff5a;
+    box-shadow: 0 0 0 3px rgba(170, 255, 90, 0.14);
+  }
+
+  .shop-noise {
+    background-image:
+      linear-gradient(135deg, rgba(170,255,90,0.12), transparent 32%),
+      radial-gradient(circle at 86% 12%, rgba(255,111,97,0.18), transparent 28%),
+      radial-gradient(circle at 10% 75%, rgba(72, 198, 239,0.18), transparent 28%);
+  }
+
+  @media screen and (max-width:640px) {
+
+    a.active{
+      background-color: #aaff5a;
+      color: #080b10;
+    }
+    
+  }
+  ::-webkit-scrollbar{
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb{
+    background: #aaff5a;
+    border-radius: 999px;
+  }
+
+  
+
