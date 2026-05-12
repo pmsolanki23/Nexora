@@ -1,13 +1,21 @@
-# NEXORA
+#  NEXORA
 
-A premium full-stack MERN platform built with modern architecture, advanced authentication, dynamic product management, scalable APIs, and enterprise-level UI/UX.
+A premium full-stack MERN platform with advanced authentication, dynamic product management, powerful admin panel, scalable APIs, enterprise-level architecture, and modern UI/UX.
 
 ---
 
 # 🌟 Overview
 
-NEXORA is designed as a modern scalable platform with secure backend architecture and premium frontend experience.  
-The system supports dynamic product handling, advanced search functionality, review & rating systems, role-based authentication, and responsive user experience.
+NEXORA is a modern scalable MERN stack platform designed with secure backend architecture, advanced admin management, dynamic product systems, role-based authentication, and premium responsive UI.
+
+The platform includes:
+- User Panel
+- Admin Panel
+- Product Management System
+- Review & Rating System
+- Advanced Search System
+- Dynamic APIs
+- Analytics & Dashboard Management
 
 ---
 
@@ -33,18 +41,36 @@ The system supports dynamic product handling, advanced search functionality, rev
 
 ---
 
-# 🔐 Features
+# 🔐 Authentication & Authorization
 
-## Authentication System
 - Secure Login & Registration
 - JWT Authentication
 - Protected Routes
-- Role-Based Access
-- Cookie-Based Sessions
+- Role-Based Access Control
+- Cookie-Based Authentication
+- Admin Authorization Middleware
 
 ---
 
-# 🛍️ Product Management
+# 👨‍💼 Admin Panel Features
+
+- Admin Dashboard
+- User Management
+- Product Management
+- Add/Edit/Delete Products
+- Product Stock Control
+- Product Variant Management
+- Category Management
+- Review Management
+- Analytics Dashboard
+- Application Monitoring
+- Secure Admin Authentication
+- Dynamic Dashboard Data
+- Search & Filter Controls
+
+---
+
+# 🛍️ Product Management System
 
 - Dynamic Product Listing
 - Product Details Page
@@ -54,6 +80,8 @@ The system supports dynamic product handling, advanced search functionality, rev
 - Product Color Management
 - Stock Management
 - Dynamic Product Handling
+- Featured Products
+- Product Status Control
 
 ---
 
@@ -64,6 +92,7 @@ The system supports dynamic product handling, advanced search functionality, rev
 - Average Rating Calculation
 - User-Based Review System
 - Dynamic Rating Updates
+- Admin Review Control
 
 ---
 
@@ -74,6 +103,7 @@ The system supports dynamic product handling, advanced search functionality, rev
 - Category-Based Search
 - Optimized Filtering
 - Fast Search Experience
+- Dynamic Query Handling
 
 ---
 
@@ -84,11 +114,12 @@ The system supports dynamic product handling, advanced search functionality, rev
 - Authentication APIs
 - Pagination
 - Filtering APIs
+- Admin APIs
 - Secure Backend Integration
 
 ---
 
-# 🎨 UI/UX
+# 🎨 UI/UX Features
 
 - Premium Modern Design
 - Glassmorphism UI
@@ -96,10 +127,11 @@ The system supports dynamic product handling, advanced search functionality, rev
 - Smooth Animations
 - Dynamic Components
 - Mobile Friendly Design
+- Interactive Dashboard
 
 ---
 
-# 🛡️ Security
+# 🛡️ Security Features
 
 - JWT Security
 - Password Hashing
@@ -107,6 +139,25 @@ The system supports dynamic product handling, advanced search functionality, rev
 - Secure Environment Variables
 - CORS Protection
 - Helmet Security Middleware
+- Authentication Middleware
+
+---
+
+# 📊 Dashboard Features
+
+## User Dashboard
+- Profile Management
+- Product Browsing
+- Review System
+- Search System
+
+## Admin Dashboard
+- Analytics Overview
+- User Statistics
+- Product Statistics
+- Review Monitoring
+- Activity Tracking
+- Product Control System
 
 ---
 
@@ -121,6 +172,13 @@ NEXORA/
 │   ├── pages/
 │   ├── context/
 │   └── assets/
+│
+├── admin/
+│   ├── src/
+│   ├── dashboard/
+│   ├── pages/
+│   ├── components/
+│   └── analytics/
 │
 ├── backend/
 │   ├── controllers/
