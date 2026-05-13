@@ -5,6 +5,9 @@ import {
   ListChecks,
   PackagePlus,
   ShoppingBag,
+  Package,
+  Star,
+  BarChart2,
 } from "lucide-react";
 
 const navItems = [
@@ -12,6 +15,9 @@ const navItems = [
   { to: "/add", label: "Add Product", icon: PackagePlus },
   { to: "/list", label: "Catalog", icon: ListChecks },
   { to: "/order", label: "Orders", icon: ShoppingBag },
+  { to: "/stock", label: "Stock", icon: Package },
+  { to: "/reviews", label: "Reviews", icon: Star },
+  { to: "/analytics", label: "Analytics", icon: BarChart2 },
 ];
 
 const Sidebar = () => {

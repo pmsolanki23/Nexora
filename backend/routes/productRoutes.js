@@ -11,18 +11,16 @@ import {
   removeProduct,
   singleProduct,
   updateProduct,
+  updateStock,
 } from "../controllers/productController.js";
 
 const productRouter = express.Router();
 
 productRouter.post("/add", authUser, adminAuth, upload, addProduct);
-
 productRouter.post("/remove", authUser, adminAuth, removeProduct);
-
 productRouter.post("/single", singleProduct);
-
 productRouter.get("/list", listProducts);
-
 productRouter.post("/update", authUser, adminAuth, upload, updateProduct);
+productRouter.post("/stock", authUser, adminAuth, updateStock);
 
 export default productRouter;

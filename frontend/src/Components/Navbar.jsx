@@ -1,13 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import { assets } from "../assets/assets";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ShopContext } from "../Context/ShopContext";
-import { User, Package, LogOut, Home, Info, Phone, Shirt } from "lucide-react";
+import { User, Package, LogOut, Home, Info, Phone, Shirt, Search, X } from "lucide-react";
+import axios from "axios";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
-  const { cartcount, token, settoken, setcartitem } = useContext(ShopContext);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [trending, setTrending] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const searchRef = useRef(null);
+  const debounceRef = useRef(null);
+
+  const { cartcount, token, settoken, setcartitem, backendurl } = useContext(ShopContext);
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -15,6 +24,53 @@ const Navbar = () => {
     setcartitem({});
     navigate("/login");
   };
+
+  // Load trending on open
+  useEffect(() => {
+    if (searchOpen) {
+      axios.get(`${backendurl}/api/search/trending`)
+        .then((res) => { if (res.data.success) setTrending(res.data.trending); })
+        .catch(() => {});
+    }
+  }, [searchOpen]);
+
+  // Debounced suggestions
+  useEffect(() => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    if (!searchQuery.trim()) {
+      setSuggestions([]);
+      return;
+    }
+    debounceRef.current = setTimeout(async () => {
+      try {
+        const res = await axios.get(
+          `${backendurl}/api/search/suggestions?q=${encodeURIComponent(searchQuery)}`,
+        );
+        if (res.data.success) setSuggestions(res.data.suggestions);
+      } catch (_) {}
+    }, 300);
+    return () => clearTimeout(debounceRef.current);
+  }, [searchQuery]);
+
+  const handleSearch = (q) => {
+    const query = q || searchQuery;
+    if (!query.trim()) return;
+    setSearchOpen(false);
+    setShowDropdown(false);
+    setSearchQuery("");
+    navigate(`/collection?q=${encodeURIComponent(query.trim())}`);
+  };
+
+  // Close on outside click
+  useEffect(() => {
+    const handler = (e) => {
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   return (
     <>
@@ -57,6 +113,78 @@ const Navbar = () => {
         </ul>
 
         <div className="flex items-center gap-3 xs:gap-4 sm:gap-5 md:gap-6">
+          {/* SEARCH */}
+          <div ref={searchRef} className="relative">
+            <button
+              onClick={() => { setSearchOpen((p) => !p); setShowDropdown(true); }}
+              className="p-2 rounded-full bg-white/80 hover:bg-[#aaff5a] transition-all duration-300"
+              aria-label="Search"
+            >
+              <Search size={18} className="text-[#080b10]" />
+            </button>
+
+            {searchOpen && (
+              <div className="absolute right-0 top-full mt-2 w-80 rounded-2xl border border-white/10 bg-[#10151f] p-3 shadow-2xl z-50">
+                <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2">
+                  <Search size={16} className="text-slate-400 shrink-0" />
+                  <input
+                    autoFocus
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => { setSearchQuery(e.target.value); setShowDropdown(true); }}
+                    onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                    placeholder="Search products..."
+                    className="flex-1 bg-transparent text-sm text-white outline-none placeholder:text-slate-500"
+                  />
+                  {searchQuery && (
+                    <button onClick={() => setSearchQuery("")}>
+                      <X size={14} className="text-slate-400 hover:text-white" />
+                    </button>
+                  )}
+                </div>
+
+                {showDropdown && (
+                  <div className="mt-2">
+                    {suggestions.length > 0 ? (
+                      <div>
+                        <p className="px-2 py-1 text-xs font-black uppercase tracking-widest text-slate-500">
+                          Suggestions
+                        </p>
+                        {suggestions.map((s) => (
+                          <button
+                            key={s._id}
+                            onClick={() => handleSearch(s.name)}
+                            className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-left text-sm text-slate-200 hover:bg-white/10"
+                          >
+                            {s.image && (
+                              <img src={s.image} alt="" className="h-8 w-8 rounded-lg object-cover" />
+                            )}
+                            <span className="flex-1 truncate">{s.name}</span>
+                          </button>
+                        ))}
+                      </div>
+                    ) : trending.length > 0 && !searchQuery ? (
+                      <div>
+                        <p className="px-2 py-1 text-xs font-black uppercase tracking-widest text-slate-500">
+                          Trending
+                        </p>
+                        {trending.map((t) => (
+                          <button
+                            key={t}
+                            onClick={() => handleSearch(t)}
+                            className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-sm text-slate-300 hover:bg-white/10"
+                          >
+                            <Search size={12} className="text-slate-500" />
+                            {t}
+                          </button>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
           <div className="group relative">
             <button
               onClick={() => !token && navigate("/login")}

@@ -119,32 +119,32 @@ const ShopContextProvider = (props) => {
   // ADD TO CART
   // =========================
 
-  const addtocart = async (id, size) => {
+  const addtocart = async (id, size, color = null) => {
     if (!size) {
       toast.error("Select Product Size");
-
       return;
     }
 
+    // Cart key includes color if variant
+    const cartKey = color ? `${id}__${color}` : id;
+
     let cartdata = structuredClone(cartitem);
 
-    if (cartdata[id]) {
-      if (cartdata[id][size]) {
-        cartdata[id][size] += 1;
+    if (cartdata[cartKey]) {
+      if (cartdata[cartKey][size]) {
+        cartdata[cartKey][size] += 1;
       } else {
-        cartdata[id][size] = 1;
+        cartdata[cartKey][size] = 1;
       }
     } else {
-      cartdata[id] = {};
-
-      cartdata[id][size] = 1;
+      cartdata[cartKey] = {};
+      cartdata[cartKey][size] = 1;
     }
 
     setcartitem(cartdata);
 
     if (!token) {
       toast.error("Please Login");
-
       return;
     }
 
@@ -152,6 +152,7 @@ const ShopContextProvider = (props) => {
       const response = await api.post("/api/cart/add", {
         itemId: id,
         size,
+        color,
       });
 
       if (response.data.success) {
@@ -161,7 +162,6 @@ const ShopContextProvider = (props) => {
       }
     } catch (error) {
       console.log(error);
-
       toast.error(error.response?.data?.message || error.message);
     }
   };

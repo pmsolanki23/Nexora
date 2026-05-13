@@ -203,6 +203,9 @@ const BestSeller = () => {
               name={item.name}
               image={item.image}
               price={item.price}
+              averageRating={item.averageRating}
+              reviewCount={item.reviewCount}
+              totalStock={item.totalStock}
             />
           ))}
         </div>
